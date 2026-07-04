@@ -18,7 +18,7 @@ client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 class ChatRequest(BaseModel):
     message: str
 
-RESTAURANT_INFO =f"""
+RESTAURANT_INFO ="""
 Restaurant Name: Savora
 Cuisine: Italian and Asian Fusion
 Hours: Monday - Sunday, 12:00 PM - 11:00 PM
@@ -74,7 +74,7 @@ Dietary options:
 
 @app.post("/chat")
 def chat(request: ChatRequest):
-    system_prompt = """You are a helpful assistant for Savora restaurant.
+    system_prompt = f"""You are a helpful assistant for Savora restaurant.
 Here is all the information about the restaurant: {RESTAURANT_INFO}
 
 Rules:

@@ -18,7 +18,7 @@ client = Groq(api_key=os.environ.get("GROQ_API_KEY"))
 class ChatRequest(BaseModel):
     message: str
 
-RESTAURANT_INFO = """
+RESTAURANT_INFO =f"""
 Restaurant Name: Savora
 Cuisine: Italian and Asian Fusion
 Hours: Monday - Sunday, 12:00 PM - 11:00 PM

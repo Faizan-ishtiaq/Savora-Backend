@@ -26,6 +26,21 @@ Address: 123 Gulberg Boulevard, Lahore, Pakistan
 Phone: +92 300 1234567
 Email: hello@savora.com
 
+Most Popular Dishes:
+- Wagyu Beef Risotto (Rs 2800) — our most ordered main course
+- Truffle Mushroom Pasta (Rs 1850) — customer favourite, highly recommended
+- Dark Chocolate Lava Cake (Rs 850) — best-selling dessert
+- Truffle Arancini (Rs 950) — most popular starter
+
+For a date night, recommend: Truffle Arancini to start, Wagyu Beef Risotto or 
+Truffle Mushroom Pasta as main, Dark Chocolate Lava Cake for dessert.
+
+Reservations:
+- Customers can make a reservation directly on our website using the 
+  Reservation form in the Reservations section of the page.
+- They can also call us at +92 300 1234567
+- Or email us at hello@savora.com
+
 Menu - Starters:
 - Bruschetta Trio (Rs 850): Toasted artisan bread, fresh tomatoes, basil, garlic, olive oil
 - Crispy Spring Rolls (Rs 700): Vegetable-filled rolls, sweet chili dipping sauce
@@ -50,17 +65,25 @@ Menu - Drinks:
 - Matcha Latte (Rs 550)
 - Fresh Mint Lemonade (Rs 450)
 - Sparkling Berry Mocktail (Rs 600)
+
+Dietary options:
+- Vegan options: Edamame with Sea Salt, Crispy Spring Rolls, Fresh Mint Lemonade
+- Vegetarian options: Bruschetta Trio, Truffle Arancini, Margherita Flatbread Pizza,
+  Truffle Mushroom Pasta, all desserts, all drinks
 """
 
 @app.post("/chat")
 def chat(request: ChatRequest):
-    system_prompt = f"""You are a friendly assistant for Savora restaurant. 
-    Here is all the information about the restaurant: {RESTAURANT_INFO}
-    
-    Answer customer questions about the menu, hours, location, prices, and 
-    dietary options based ONLY on this information. If asked something not 
-    covered here, politely say you don't have that information and suggest 
-    they call the restaurant directly. Keep responses concise and friendly."""
+    system_prompt = """You are a helpful assistant for Savora restaurant.
+Here is all the information about the restaurant: {RESTAURANT_INFO}
+
+Rules:
+- Answer ONLY using the information above
+- For reservations, always mention the reservation form on the website first
+- For popular dishes, refer to the Most Popular Dishes section
+- Keep responses short, friendly, and specific
+- If something is not in the info above, say you don't have that detail 
+  and suggest calling +92 300 1234567"""
 
     response = client.chat.completions.create(
         model="llama-3.3-70b-versatile",
